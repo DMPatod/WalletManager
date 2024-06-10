@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0623AAE5-71D8-4A07-A37B-2B3079CC3119}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EB43B21A-828C-4C8B-AAC7-065945DD5211}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Domain", "src\Wallet.Domain\Wallet.Domain.csproj", "{E30E92A5-3D70-4219-A78C-0580B86D3F82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Infrastructure", "src\Wallet.Infrastructure\Wallet.Infrastructure.csproj", "{16266B75-F082-4BCA-A658-5A1520EEB6B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Application", "src\Wallet.Application\Wallet.Application.csproj", "{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletManager.API", "src\WalletManager.API\WalletManager.API.csproj", "{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7701D594-907E-4E81-8E7E-86C4542D74AD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E30E92A5-3D70-4219-A78C-0580B86D3F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30E92A5-3D70-4219-A78C-0580B86D3F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30E92A5-3D70-4219-A78C-0580B86D3F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30E92A5-3D70-4219-A78C-0580B86D3F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16266B75-F082-4BCA-A658-5A1520EEB6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16266B75-F082-4BCA-A658-5A1520EEB6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16266B75-F082-4BCA-A658-5A1520EEB6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16266B75-F082-4BCA-A658-5A1520EEB6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E30E92A5-3D70-4219-A78C-0580B86D3F82} = {0623AAE5-71D8-4A07-A37B-2B3079CC3119}
+		{16266B75-F082-4BCA-A658-5A1520EEB6B0} = {0623AAE5-71D8-4A07-A37B-2B3079CC3119}
+		{68FD4A8F-FA18-4DF6-A8B9-4F5A95D19D76} = {0623AAE5-71D8-4A07-A37B-2B3079CC3119}
+		{A0D4ED2E-D0B8-4572-8BC1-A14734A0D081} = {0623AAE5-71D8-4A07-A37B-2B3079CC3119}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F258B9F6-BD50-4344-AA25-2D1BFEC88388}
+	EndGlobalSection
+EndGlobal

@@ -1,13 +1,34 @@
-﻿
+﻿using DDD.Core.DomainObjects;
+
 namespace Wallet.Domain.Orders.ValueObjects
 {
-    public class PortfolioId
+    public class PortfolioId : ValueObject
     {
-        public object Value { get; set; }
+        public Guid Value { get; set; }
 
-        public static PortfolioId Create(object value)
+        private PortfolioId(Guid value)
         {
-            throw new NotImplementedException();
+            Value = value;
+        }
+
+        public static PortfolioId Create(Guid value)
+        {
+            return new PortfolioId(value);
+        }
+
+        public static PortfolioId Create()
+        {
+            return new PortfolioId(Guid.NewGuid());
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
+
+        public override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Value;
         }
     }
 }

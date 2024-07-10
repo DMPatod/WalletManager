@@ -1,0 +1,3 @@
+interface Portfolio {
+  title: string;
+}

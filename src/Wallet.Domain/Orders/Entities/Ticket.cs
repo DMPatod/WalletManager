@@ -37,9 +37,14 @@ namespace Wallet.Domain.Orders.Entities
 
         public IList<Order> Orders { get; set; }
 
-        public static Ticket Create(string cod, string title, string owner, Currency currency, Portfolio value)
+        public static Ticket Create(string cod, string title, string owner, Currency currency, Portfolio portfolio)
         {
-            throw new NotImplementedException();
+            return new Ticket(TicketId.Create(),
+                              cod,
+                              title,
+                              owner,
+                              currency,
+                              portfolio);
         }
     }
 }

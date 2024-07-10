@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DDD.Core.Handlers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Wallet.Application
 {
@@ -6,7 +7,8 @@ namespace Wallet.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            
+            //services.AddDefaultMessageHandler(typeof(BuildHandler).Assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([typeof(BuildHandler).Assembly]));
 
             return services;
         }

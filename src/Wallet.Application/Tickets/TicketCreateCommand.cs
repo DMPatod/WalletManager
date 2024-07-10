@@ -32,7 +32,7 @@ namespace Wallet.Application.Tickets
             var portfolioRequest = await _messageHandler.SendAsync(portfolioGetCommand, cancellationToken);
             if (portfolioRequest.IsFailed)
             {
-                return Result.Fail("");
+                return Result.Fail("Portfolio not Found");
             }
 
             var ticket = Ticket.Create(request.Cod, request.Title, request.Owner, request.Currency, portfolioRequest.Value);

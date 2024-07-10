@@ -11,7 +11,9 @@ namespace Wallet.Infrastructure.DataPersistence.Sqlite3
     {
         private readonly IMessageHandler _messageHandler;
 
-        public Sqlite3DbContext(DbContextOptions<Sqlite3DbContext> options, IMessageHandler messageHandler)
+        public Sqlite3DbContext(DbContextOptions<Sqlite3DbContext> options,
+                                IMessageHandler messageHandler)
+            : base(options)
         {
             _messageHandler = messageHandler;
         }

@@ -2,5 +2,6 @@
 {
     public enum Currency
     {
+        BRL, Dollar, Euro, NZD
     }
 }

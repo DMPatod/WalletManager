@@ -31,7 +31,7 @@ namespace Wallet.Domain.Orders
             Price = price;
         }
 
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
 
         public DateTime DateTime { get; set; }
 
@@ -45,9 +45,22 @@ namespace Wallet.Domain.Orders
 
         public double Price { get; set; }
 
-        public static Order Create(Ticket value, DateTime dateTime, OperationType type, double amount, double price)
+        public static Order Create(Ticket ticket,
+                                   DateTime dateTime,
+                                   OperationType operationType,
+                                   bool dayTrade,
+                                   bool completed,
+                                   double amount,
+                                   double price)
         {
-            throw new NotImplementedException();
+            return new Order(OrderId.Create(),
+                             ticket,
+                             dateTime,
+                             operationType,
+                             dayTrade,
+                             completed,
+                             amount,
+                             price);
         }
     }
 }

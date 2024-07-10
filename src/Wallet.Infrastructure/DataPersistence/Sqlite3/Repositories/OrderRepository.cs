@@ -17,6 +17,7 @@ namespace Wallet.Infrastructure.DataPersistence.Sqlite3.Repositories
         public async Task<Order> CreateAsync(Order entity, CancellationToken cancellationToken = default)
         {
             var ct = await _context.AddAsync(entity, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
             return ct.Entity;
         }
 

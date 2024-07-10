@@ -1,4 +1,5 @@
-﻿using DDD.Core.Handlers.SHS.RD.CGC.Core.DomainEvents;
+﻿using Asp.Versioning;
+using DDD.Core.Handlers.SHS.RD.CGC.Core.DomainEvents;
 using Microsoft.AspNetCore.Mvc;
 using Wallet.Application.Orders;
 using WalletManager.API.Contracts.Orders;
@@ -36,6 +37,8 @@ namespace WalletManager.API.Controllers.V1
             var command = new OrderCreateCommand(request.TicketId,
                                                  request.Date,
                                                  request.Type,
+                                                 request.DayTrade,
+                                                 request.Completed,
                                                  request.Amount,
                                                  request.Price);
             var result = await _messageHandler.SendAsync(command, CancellationToken.None);

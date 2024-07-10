@@ -1,4 +1,5 @@
-﻿using Wallet.Domain.Orders.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Wallet.Domain.Orders.Entities;
 using Wallet.Domain.Orders.Repositories;
 using Wallet.Domain.Orders.ValueObjects;
 
@@ -6,9 +7,18 @@ namespace Wallet.Infrastructure.DataPersistence.Sqlite3.Repositories
 {
     internal class TicketRepository : ITicketRepository
     {
-        public Task<Ticket> CreateAsync(Ticket entity, CancellationToken cancellationToken = default)
+        private readonly Sqlite3DbContext _context;
+
+        public TicketRepository(Sqlite3DbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<Ticket> CreateAsync(Ticket entity, CancellationToken cancellationToken = default)
+        {
+            var ct = await _context.AddAsync(entity, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            return ct.Entity;
         }
 
         public Task DeleteAsync(Ticket entity, CancellationToken cancellationToken = default)
@@ -16,14 +26,15 @@ namespace Wallet.Infrastructure.DataPersistence.Sqlite3.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Ticket?> FindAsync(TicketId id, CancellationToken cancellationToken = default)
+        public async Task<Ticket?> FindAsync(TicketId id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Set<Ticket>().FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
         }
 
-        public Task<ICollection<Ticket>> FindAsync(CancellationToken cancellationToken = default)
+        public async Task<ICollection<Ticket>> FindAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var tickets = _context.Set<Ticket>();
+            return await tickets.ToListAsync(cancellationToken);
         }
 
         public Task UpdateAsync(Ticket entity, CancellationToken cancellationToken = default)

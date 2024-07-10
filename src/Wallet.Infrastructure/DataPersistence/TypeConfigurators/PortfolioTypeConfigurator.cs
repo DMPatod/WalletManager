@@ -21,7 +21,7 @@ namespace Wallet.Infrastructure.DataPersistence.TypeConfigurators
 
             builder.Property(p => p.Title);
 
-            builder.HasMany(p => p.Tickets);
+            //builder.HasMany(p => p.Tickets);
         }
     }
 }

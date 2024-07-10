@@ -4,20 +4,31 @@ namespace Wallet.Domain.Orders.ValueObjects
 {
     public class TicketId : ValueObject
     {
-        public TicketId(string id)
+        private TicketId(Guid value)
         {
+            Value = value;
         }
 
-        public object Value { get; set; }
+        public Guid Value { get; set; }
 
-        public static TicketId Create(object value)
+        public static TicketId Create(Guid value)
         {
-            throw new NotImplementedException();
+            return new TicketId(value);
+        }
+
+        internal static TicketId Create()
+        {
+            return new TicketId(Guid.NewGuid());
         }
 
         public override IEnumerable<object> GetEqualityComponents()
         {
-            throw new NotImplementedException();
+            yield return Value;
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

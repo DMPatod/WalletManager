@@ -17,11 +17,12 @@ namespace Wallet.Domain.Orders.Entities
 
         public string Title { get; set; }
 
-        public IList<Ticket> Tickets { get; set; }
+        //public IList<Ticket> Tickets { get; set; }
 
         public static Portfolio Create(string title)
         {
-            throw new NotImplementedException();
+            return new Portfolio(PortfolioId.Create(),
+                                 title);
         }
     }
 }

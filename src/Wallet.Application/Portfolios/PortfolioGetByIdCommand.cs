@@ -3,10 +3,11 @@ using DDD.Core.Messages;
 using FluentResults;
 using Wallet.Domain.Orders.Entities;
 using Wallet.Domain.Orders.Repositories;
+using Wallet.Domain.Orders.ValueObjects;
 
 namespace Wallet.Application.Portfolios
 {
-    public record PortfolioGetByIdCommand(string Title) : ICommand<Result<Portfolio>>;
+    public record PortfolioGetByIdCommand(string Id) : ICommand<Result<Portfolio>>;
 
     public class PortfolioGetByIdCommandHandler : ICommandHandler<PortfolioGetByIdCommand, Result<Portfolio>>
     {
@@ -19,8 +20,8 @@ namespace Wallet.Application.Portfolios
 
         public async Task<Result<Portfolio>> Handle(PortfolioGetByIdCommand request, CancellationToken cancellationToken)
         {
-            var portfolio = Portfolio.Create(request.Title);
-            await _repository.CreateAsync(portfolio, cancellationToken);
+            var id = PortfolioId.Create(Guid.Parse(request.Id));
+            var portfolio = await _repository.FindAsync(id, cancellationToken);
             return portfolio;
         }
     }

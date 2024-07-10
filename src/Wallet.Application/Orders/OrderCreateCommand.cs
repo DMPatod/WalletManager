@@ -12,6 +12,8 @@ namespace Wallet.Application.Orders
     public record OrderCreateCommand(string TicketId,
                                      string Date,
                                      OperationType Type,
+                                     bool DayTrade,
+                                     bool Completed,
                                      double Amount,
                                      double Price) : ICommand<Result<Order>>;
 
@@ -29,19 +31,25 @@ namespace Wallet.Application.Orders
 
         public async Task<Result<Order>> Handle(OrderCreateCommand request, CancellationToken cancellationToken)
         {
-            var getTicketCommand = new TicketFindByIdCommand(request.TicketId);
+            var getTicketCommand = new TicketGetByIdCommand(request.TicketId);
             var ticketRequest = await _messageHandler.SendAsync(getTicketCommand, cancellationToken);
             if (ticketRequest.IsFailed)
             {
                 return Result.Fail("");
             }
 
-            if (DateTime.TryParse(request.Date, out var dateTime))
+            if (!DateTime.TryParse(request.Date, out var dateTime))
             {
-                return Result.Fail("");
+                return Result.Fail("Invalid date format.");
             }
 
-            var order = Order.Create(ticketRequest.Value, dateTime, request.Type, request.Amount, request.Price);
+            var order = Order.Create(ticketRequest.Value,
+                                     dateTime,
+                                     request.Type,
+                                     request.DayTrade,
+                                     request.Completed,
+                                     request.Amount,
+                                     request.Price);
             await _repository.CreateAsync(order, cancellationToken);
             return order;
         }

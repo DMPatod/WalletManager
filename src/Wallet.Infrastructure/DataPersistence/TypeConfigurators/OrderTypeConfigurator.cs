@@ -20,6 +20,18 @@ namespace Wallet.Infrastructure.DataPersistence.TypeConfigurators
                     value => OrderId.Create(value));
 
             builder.HasOne(o => o.Ticket);
+
+            builder.Property(o => o.DateTime);
+
+            builder.Property(o => o.OperationType);
+
+            builder.Property(o => o.DayTrade);
+
+            builder.Property(o => o.Completed);
+
+            builder.Property(o => o.Amount);
+
+            builder.Property(o => o.Price);
         }
     }
 }

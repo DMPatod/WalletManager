@@ -4,16 +4,31 @@ namespace Wallet.Domain.Orders.ValueObjects
 {
     public class OrderId : ValueObject
     {
-        public object Value { get; set; }
+        public Guid Value { get; set; }
 
-        public static OrderId Create(object value)
+        private OrderId(Guid value)
         {
-            throw new NotImplementedException();
+            Value = value;
+        }
+
+        public static OrderId Create(Guid value)
+        {
+            return new OrderId(value);
+        }
+
+        public static OrderId Create()
+        {
+            return new OrderId(Guid.NewGuid());
         }
 
         public override IEnumerable<object> GetEqualityComponents()
         {
-            throw new NotImplementedException();
+            yield return Value;
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

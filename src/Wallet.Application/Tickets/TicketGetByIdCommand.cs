@@ -8,25 +8,26 @@ using Wallet.Domain.Orders.ValueObjects;
 
 namespace Wallet.Application.Tickets
 {
-    public record TicketFindByIdCommand(string Id) : ICommand<Result<Ticket>>;
+    public record TicketGetByIdCommand(string Id) : ICommand<Result<Ticket>>;
 
-    public class TicketFindByIdCommandHandler : ICommandHandler<TicketFindByIdCommand, Result<Ticket>>
+    public class TicketGetByIdCommandHandler : ICommandHandler<TicketGetByIdCommand, Result<Ticket>>
     {
         private readonly IMessageHandler _messageHandler;
         private readonly ITicketRepository _repository;
 
-        public TicketFindByIdCommandHandler(ITicketRepository repository, IMessageHandler messageHandler)
+        public TicketGetByIdCommandHandler(ITicketRepository repository, IMessageHandler messageHandler)
         {
             _repository = repository;
             _messageHandler = messageHandler;
         }
 
-        public async Task<Result<Ticket>> Handle(TicketFindByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Ticket>> Handle(TicketGetByIdCommand request, CancellationToken cancellationToken)
         {
-            var ticket = await _repository.FindAsync(new TicketId(request.Id), cancellationToken);
+            var id = TicketId.Create(Guid.Parse(request.Id));
+            var ticket = await _repository.FindAsync(id, cancellationToken);
             if (ticket is null)
             {
-                return Result.Fail("");
+                return Result.Fail("Ticket not Found");
             }
 
             return ticket;

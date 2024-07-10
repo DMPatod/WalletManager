@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using DDD.Core.Handlers.SHS.RD.CGC.Core.DomainEvents;
 using Microsoft.AspNetCore.Mvc;
 using Wallet.Application.Portfolios;

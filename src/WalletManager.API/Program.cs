@@ -1,6 +1,6 @@
+using Auth.Infrastructure;
 using Wallet.Application;
 using Wallet.Infrastructure;
-using Auth.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +43,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

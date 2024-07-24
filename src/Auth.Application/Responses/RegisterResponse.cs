@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Auth.Application.Contracts
+﻿namespace Auth.Application.Contracts
 {
-    internal class RegisterResponse
-    {
-    }
+    public record RegisterResponse(string Id,
+                                   string Email);
 }

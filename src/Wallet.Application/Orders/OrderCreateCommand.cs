@@ -3,6 +3,7 @@ using DDD.Core.Handlers.SHS.RD.CGC.Core.DomainEvents;
 using DDD.Core.Messages;
 using FluentResults;
 using Wallet.Application.Tickets;
+using Wallet.Application.Users;
 using Wallet.Domain.Orders;
 using Wallet.Domain.Orders.Enums;
 using Wallet.Domain.Orders.Repositories;
@@ -15,7 +16,8 @@ namespace Wallet.Application.Orders
                                      bool DayTrade,
                                      bool Completed,
                                      double Amount,
-                                     double Price) : ICommand<Result<Order>>;
+                                     double Price,
+                                     string UserId) : ICommand<Result<Order>>;
 
     public class OrderCreateCommandHandler : ICommandHandler<OrderCreateCommand, Result<Order>>
     {
@@ -35,12 +37,19 @@ namespace Wallet.Application.Orders
             var ticketRequest = await _messageHandler.SendAsync(getTicketCommand, cancellationToken);
             if (ticketRequest.IsFailed)
             {
-                return Result.Fail("");
+                return Result.Fail("Ticket not found.");
             }
 
             if (!DateTime.TryParse(request.Date, out var dateTime))
             {
                 return Result.Fail("Invalid date format.");
+            }
+
+            var getUserCommand = new UserGetByIdCommand(request.UserId);
+            var userRequest = await _messageHandler.SendAsync(getUserCommand, cancellationToken);
+            if (userRequest.IsFailed)
+            {
+                return Result.Fail("User not found.");
             }
 
             var order = Order.Create(ticketRequest.Value,
@@ -49,7 +58,8 @@ namespace Wallet.Application.Orders
                                      request.DayTrade,
                                      request.Completed,
                                      request.Amount,
-                                     request.Price);
+                                     request.Price,
+                                     userRequest.Value.Id);
             await _repository.CreateAsync(order, cancellationToken);
             return order;
         }

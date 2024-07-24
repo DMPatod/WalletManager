@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wallet.Infrastructure.DataPersistence.Sqlite3;
 
@@ -10,9 +11,11 @@ using Wallet.Infrastructure.DataPersistence.Sqlite3;
 namespace Wallet.Infrastructure.DataPersistence.Migrations
 {
     [DbContext(typeof(Sqlite3DbContext))]
-    partial class Sqlite3DbContextModelSnapshot : ModelSnapshot
+    [Migration("20240719150434_OrderUserRelation")]
+    partial class OrderUserRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");

@@ -8,5 +8,6 @@ namespace WalletManager.API.Contracts.Orders
                                      bool DayTrade,
                                      bool Completed,
                                      double Amount,
-                                     double Price);
+                                     double Price,
+                                     string UserId);
 }

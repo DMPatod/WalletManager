@@ -4,6 +4,6 @@ namespace Auth.Infrastructure.Models
 {
     public class AuthUser : IdentityUser
     {
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

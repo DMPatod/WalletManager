@@ -17,8 +17,6 @@ namespace Wallet.Domain.Orders.Entities
 
         public string Title { get; set; }
 
-        //public IList<Ticket> Tickets { get; set; }
-
         public static Portfolio Create(string title)
         {
             return new Portfolio(PortfolioId.Create(),

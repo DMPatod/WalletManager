@@ -32,6 +32,8 @@ namespace Wallet.Infrastructure.DataPersistence.TypeConfigurators
             builder.Property(o => o.Amount);
 
             builder.Property(o => o.Price);
+
+            builder.HasOne(o => o.User);
         }
     }
 }

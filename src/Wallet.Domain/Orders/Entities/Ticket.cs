@@ -35,7 +35,7 @@ namespace Wallet.Domain.Orders.Entities
 
         public Portfolio Portfolio { get; set; }
 
-        public IList<Order> Orders { get; set; }
+        public IReadOnlyList<Order> Orders { get; set; }
 
         public static Ticket Create(string cod, string title, string owner, Currency currency, Portfolio portfolio)
         {

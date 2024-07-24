@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auth.Infrastructure.DataPersistence.TypeConfigurators
 {
-    internal class ApplicationUserTypeConfiguration : IEntityTypeConfiguration<AuthUser>
+    internal class AuthUserTypeConfiguration : IEntityTypeConfiguration<AuthUser>
     {
         public void Configure(EntityTypeBuilder<AuthUser> builder)
         {

@@ -2,6 +2,8 @@
 using Wallet.Domain.Orders.Entities;
 using Wallet.Domain.Orders.Enums;
 using Wallet.Domain.Orders.ValueObjects;
+using Wallet.Domain.Users;
+using Wallet.Domain.Users.ValueObjects;
 
 namespace Wallet.Domain.Orders
 {
@@ -19,7 +21,8 @@ namespace Wallet.Domain.Orders
                       bool dayTrade,
                       bool completed,
                       double amount,
-                      double price)
+                      double price,
+                      UserId user)
             : base(id)
         {
             Ticket = ticket;
@@ -29,6 +32,7 @@ namespace Wallet.Domain.Orders
             Completed = completed;
             Amount = amount;
             Price = price;
+            //User = user;
         }
 
         public virtual Ticket Ticket { get; set; }
@@ -45,13 +49,16 @@ namespace Wallet.Domain.Orders
 
         public double Price { get; set; }
 
+        public User User { get; set; }
+
         public static Order Create(Ticket ticket,
                                    DateTime dateTime,
                                    OperationType operationType,
                                    bool dayTrade,
                                    bool completed,
                                    double amount,
-                                   double price)
+                                   double price,
+                                   UserId user)
         {
             return new Order(OrderId.Create(),
                              ticket,
@@ -60,7 +67,8 @@ namespace Wallet.Domain.Orders
                              dayTrade,
                              completed,
                              amount,
-                             price);
+                             price,
+                             user);
         }
     }
 }

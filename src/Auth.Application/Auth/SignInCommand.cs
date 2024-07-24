@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Auth.Application.Auth
 {
-    public record LoginCommand(LoginRequest Request) : ICommand<Result<LoginResponse>>;
+    public record SignInCommand(string Username,
+                                string Password) : ICommand<Result<LoginResponse>>;
 
-    public class LoginCommandHandler : ICommandHandler<LoginCommand, Result<LoginResponse>>
+    public class SignInCommandHandler : ICommandHandler<SignInCommand, Result<LoginResponse>>
     {
         private readonly UserManager<AuthUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<AuthUser> _signInManager;
 
-        public LoginCommandHandler(UserManager<AuthUser> userManager,
-                                   SignInManager<IdentityUser> signInManager)
+        public SignInCommandHandler(UserManager<AuthUser> userManager,
+                                   SignInManager<AuthUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public async Task<Result<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<Result<LoginResponse>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByNameAsync(request.Request.Username);
+            var user = await _userManager.FindByNameAsync(request.Username);
             if (user is null)
             {
                 return Result.Fail("User not found");
             }
 
-            var loginResult = await _signInManager.PasswordSignInAsync(user, request.Request.Password, false, false);
+            var loginResult = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
             if (!loginResult.Succeeded)
             {
                 return Result.Fail("Invalid password");

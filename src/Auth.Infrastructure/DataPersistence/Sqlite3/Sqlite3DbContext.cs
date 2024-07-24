@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Auth.Infrastructure.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Infrastructure.DataPersistence.Sqlite3
 {
-    public class Sqlite3DbContext : IdentityDbContext
+    public class Sqlite3DbContext : IdentityDbContext<AuthUser>
     {
         public Sqlite3DbContext(DbContextOptions<Sqlite3DbContext> options) : base(options)
         {

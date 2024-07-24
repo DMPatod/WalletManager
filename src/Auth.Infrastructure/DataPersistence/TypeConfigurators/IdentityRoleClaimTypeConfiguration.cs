@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auth.Infrastructure.DataPersistence.TypeConfigurators
 {
-    internal class IdentityRoleClaimTypeConfiguration : IEntityTypeConfiguration<IdentityRole<string>>
+    internal class IdentityRoleClaimTypeConfiguration : IEntityTypeConfiguration<IdentityRoleClaim<string>>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole<string>> builder)
+        public void Configure(EntityTypeBuilder<IdentityRoleClaim<string>> builder)
         {
             // Primary key
             builder.HasKey(rc => rc.Id);

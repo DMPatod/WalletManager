@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wallet.Domain.Orders.Repositories;
+using Wallet.Domain.Users.Repositories;
 using Wallet.Infrastructure.DataPersistence.Sqlite3;
 using Wallet.Infrastructure.DataPersistence.Sqlite3.Repositories;
 
@@ -20,6 +21,7 @@ namespace Wallet.Infrastructure.DataPersistence
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

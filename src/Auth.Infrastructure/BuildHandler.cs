@@ -1,4 +1,6 @@
 ﻿using Auth.Infrastructure.DataPersistence.Sqlite3;
+using Auth.Infrastructure.Models;
+using Duende.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,12 +17,25 @@ namespace Auth.Infrastructure
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AuthUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<Sqlite3DbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(option =>
+            {
+                option.DefaultScheme = IdentityServerConstants.DefaultCookieAuthenticationScheme;
+                option.DefaultChallengeScheme = IdentityServerConstants.DefaultCookieAuthenticationScheme;
+            })
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                    options.SlidingExpiration = false;
+                });
+
+            services.AddAuthorization();
 
             return services;
         }

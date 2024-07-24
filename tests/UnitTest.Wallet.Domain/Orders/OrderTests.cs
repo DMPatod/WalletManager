@@ -2,6 +2,7 @@
 using Wallet.Domain.Orders;
 using Wallet.Domain.Orders.Entities;
 using Wallet.Domain.Orders.Enums;
+using Wallet.Domain.Users.ValueObjects;
 
 namespace UnitTest.Wallet.Domain.Orders
 {
@@ -18,6 +19,7 @@ namespace UnitTest.Wallet.Domain.Orders
             var price = 10.0;
             var dayTrade = true;
             var completed = true;
+            var user = UserId.Create(Guid.NewGuid());
 
             var order = Order.Create(ticket,
                                      dateTime,
@@ -25,7 +27,8 @@ namespace UnitTest.Wallet.Domain.Orders
                                      dayTrade,
                                      completed,
                                      amount,
-                                     price);
+                                     price,
+                                     user);
 
             Assert.NotNull(order);
             Assert.Equal(ticket, order.Ticket);
@@ -35,6 +38,7 @@ namespace UnitTest.Wallet.Domain.Orders
             Assert.Equal(completed, order.Completed);
             Assert.Equal(amount, order.Amount);
             Assert.Equal(price, order.Price);
+            Assert.Equal(user, order.UserId);
         }
     }
 }

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="DMPatod.DDD.Core" Version="0.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
